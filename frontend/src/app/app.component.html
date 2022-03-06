@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-light " style="background-color: #e3f2fd;">
+  <div class="hero__background">
+    <video playsinline="" autoplay="" muted="" loop="" class="hero__background-video hero__background-video--light">
+      <source src="../assets/video/video-bg-light.mp4" type="video/mp4">
+      Your browser does not support HTML5 video.
+    </video>
+  </div>
+  <div class="container-fluid d-flex flex-column">
+    <div class="w-100 justify-content-center">
+      <span class="logoSpan" >
+        <a class="navbar-brand text-center" routerLink ="/" routerLinkActive = "active">
+          <img src="../assets/images/E-logo1.png" class="logo rounded-circle " >
+        </a>
+      </span>
+     <span class="float-end mt-3 navCotent">
+       <span *ngIf="authLogged == 'false'">
+
+         <a routerLink="/login" routerLinkActive="active"  class=" animate__jello btn ms-3 mt-3 btn-outline-primary rounded-0 text-decoration-none">Login</a> 
+      </span>
+       <!-- Display user name who logged it .. but its not coming wihtout reloading 
+          <span *ngIf ="authLogged == 'true'">
+          <h5>Hello {{currectUser}}</h5> 
+       </span> -->
+       <span *ngIf ="authLogged == 'true'">
+         
+         <h5 class="d-inline userName pt-3 "><span class="text-secondary fst-italic fw-light">Hello,</span> {{authUser.userName}}</h5>
+      </span>
+
+       <a routerLink ="/products" routerLinkActive = "active"  class="ms-3 mt-3 btn btn-outline-primary  rounded-0 text-decoration-none">Products</a>
+       <span *ngIf ="authLogged == 'true'">
+         <button class="btn ms-3 mt-3 btn-outline-primary rounded-0" routerLink ="/cart" routerLinkActive = "active"> 
+           <!-- <i class="bi bi-cart-fill"></i> -->
+           <i class="bi bi-cart4"></i>
+          </button>
+          <button class="btn ms-3 mt-3 btn-outline-primary rounded-0"  routerLink ="/orders" routerLinkActive = "active">Orders</button>
+          <a class="btn ms-3 mt-3 btn-outline-primary  rounded-0 text-decoration-none" (click)="logoutClick()"><i class="bi bi-box-arrow-left"></i></a> 
+          
+        </span>
+
+     </span>
+    </div>
+   
+  </div>
+</nav>
+
+<router-outlet></router-outlet>
+
+
+
+<footer class="page-footer font-small blue">
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2022 Copyright:
+    <a href="#">UrbanStock.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>

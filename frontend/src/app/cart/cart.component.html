@@ -1,0 +1,52 @@
+<div *ngIf= "cartItems.length == 0">
+    <div class="border bg-light bg-none w-50 text-center text-dark p-5 m-5 mx-auto">
+        <h1 class="cart">🛒</h1>
+        <h4>OOPS! Your Cart is Empty!</h4>
+        <button class="btn btn-danger bg-gradient rounded-0"><a class="text-decoration-none text-dark" href="/products">Shop Now</a></button>
+    </div>
+</div>
+<div  *ngIf ="cartItems.length != 0" class="m-5">
+    <div class="mb-3 d-flex flex-row justify-content-between mt-o ">
+        <button class="btn btn-warning w-25 p-2 rounded-0"><a class="text-decoration-none text-dark " href="/products">Shop More</a></button>
+        
+        <button class="btn btn-primary p-2 w-25 rounded-0" routerLink ="/checkout" routerLinkActive = "active" >Checkout</button>
+    
+    </div>
+<table class="table rounded-3 table-hover bg-light  fw-bold">
+    <thead class=" text-dark fw-bolder">
+        <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let item of cartItems" class="text-secondary">
+        <tr>
+            <td>{{item["productId"]}}</td>
+            <td>            <img src="{{item['image']}}" alt="..." class="cartImg">
+            </td>
+            <td>
+                {{item["title"]}}
+            </td>
+            <td>${{item["price"]}}</td>
+            <td>
+                <button class="btn btn-outline-primary" (click)="decreaseQuant(item['productId'])">-</button>
+                <p class="d-inline p-2">{{item["quantity"]}}</p>
+                <button class="btn btn-outline-primary" (click)="increaseQuant(item['productId'])">+</button>
+            </td>
+            <td>
+                <button class="btn btn-outline-danger" (click)="deleteItem(item['productId'])" ><i class="bi bi-trash3"></i>
+                </button>
+            </td>
+        </tr>
+
+    </tbody>
+   
+</table>
+
+
+
+</div>
