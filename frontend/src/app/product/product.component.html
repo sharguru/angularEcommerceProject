@@ -1,0 +1,14 @@
+<button class="btn btn-primary rounded-0 m-3"> <a class="text-light text-decoration-none" routerLinkActive="active" routerLink ="/products"> <i class="bi bi-arrow-left"></i> Back to Products</a></button>
+
+<div class="product d-flex bg-white p-5">
+    <div class="w-50 img-hover-zoom" >
+        <img src={{idProduct[0].image}} class="w-50 " alt="...">
+    </div>
+    <div class="w-50 text-start">
+        <h3>{{idProduct[0].title}}</h3>
+        <p>{{idProduct[0].description}}</p>
+        <h2 class="text-success">Price : $ {{idProduct[0].price}}</h2>
+        <h6 class="float-end text-secondary">⭐{{idProduct[0].rate}} (from {{idProduct[0].count}} customers)</h6>
+        <button class="btn btn-outline-primary float-center w-50 " (click)="addItemToCart(idProduct[0])">Add To Cart</button>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<!-- <h1 class="m-5">products works!</h1>
+<button (click)="getProductsFromDB()">get </button> -->
+<nav class="navbar navbar-expand-lg navbar-light productNav mx-auto " >
+<div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+        <a class="nav-link  text-light fw-bold ms-3 filters"  aria-current="page" (click)="getProductsFromDB()" >All</a> 
+        <a class="nav-link  text-light fw-bold ms-3 filters" (click) = "getMensProductsFromDB()">Men</a> 
+        <a class="nav-link  text-light fw-bold ms-3 filters" (click)="getWomenProductFromDB()">Women</a>
+        <a class="nav-link  text-light fw-bold ms-3 filters" (click)="getAccessoriesProductFromDB()">Accessories</a>
+        <a class="nav-link  text-light fw-bold ms-3 filters" (click)="getElectronicsProductFromDB()">Electronics</a>
+        <a class="nav-link  text-light fw-bold ms-3 filters" (click)="openFilterByPrice()">Filter by Price</a>
+        <a class="nav-link  text-light fw-bold ms-3 filters" (click)="openFilterByRating()">Filter by Rating</a>
+        <div *ngIf="openPriceSlider == true" class="bg-light p-3 px-5 priceSlider" >
+          <ngx-slider [(value)]="lowValue" [(highValue)]="highValue" [options]="priceOptions"></ngx-slider>     
+          <button (click)="closeFilterByPrice()" class="btn btn-primary mt-3 w-50 mx-auto">Filter By Price</button>
+        </div>
+        <div *ngIf="openRatingSlider == true" class="bg-light p-3 px-5 ratingSlider" >
+          <ngx-slider [(value)]="lowRating" [(highValue)]="highRating" [options]="ratingOptions"></ngx-slider>     
+          <button (click)="closeFilterByRating()" class="btn btn-primary mt-3 w-50 mx-auto">Filter By Rating</button>
+        </div>
+        <!-- <mdb-range [min]="0" [max]="100"></mdb-range> -->
+      </div>
+  </div>
+</nav>
+<div  class="products d-flex flex-row bg-light border border-none flex-wrap justify-content-evenly mt-0">
+
+ <div class="card m-3 w-25 product" *ngFor ="let item of allProductArray">
+    
+    <img src={{item.image}} class="card-img-top w-50 mx-auto mt-3 mb-3 align-items-stretch" > 
+    <div class="cBody p-3">
+      <h5 class="card-title">{{item.title}}</h5>
+      <p class="card-text">Price : <span class="text-danger fs-4 "><sup>$</sup>{{item.price}}</span>     <span class="text-decoration-line-through m-3 text-secondary fs-6"><sup>$</sup>{{roundFucntion(item.price+10)}}</span> <span class="float-end">⭐{{item.rate}}({{item.count}})</span></p>
+      <a  class="btn btn-outline-primary w-100 rounded-0 bg-gradient" (click)="addToCart(item.id)" routerLinkActive="active" [routerLink] ="['/product']" [queryParams]="{id:item.id}">Buy Now</a>
+    </div>                                    
+
+   
+</div>
+
+</div>

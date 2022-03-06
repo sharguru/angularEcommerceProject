@@ -1,0 +1,83 @@
+<!-- login part  -->
+<div class="login" *ngIf="isLogin == true" >
+
+    <div class=" bg-opacity-50 bg-dark w-75  rounded-3 text-center p-5 justify-content-center mb-5 mt-5 mx-auto" >
+        <form [formGroup]='loginForm'>
+            <h3 class="text-light  fw-bold mb-3">Login</h3>
+            <div class="mb-5 text-light opacity-75">
+              <input type="email" formControlName="userEmail"  placeholder="Enter Email" name="userEmail" class=" rounded-0 form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <div *ngIf="userEmail?.invalid && (userEmail?.dirty || userEmail?.touched)">
+                  <div *ngIf="userEmail?.errors?.['required']">
+                      <p class="text-light p-0 float-start ">*Required</p>
+                  </div>
+              </div>
+            </div>
+            <div class="mb-5  text-light opacity-75"> 
+              <input type="password"  formControlName= "userPassword" placeholder="Enter Password" name ="userPassword" class=" rounded-0 form-control" id="exampleInputPassword1">
+              <div *ngIf="userPassword?.invalid && (userPassword?.dirty || userPassword?.touched)">
+                  <div *ngIf="userPassword?.errors?.['required']">
+                      <p class="text-light p-0 float-start ">*Required</p>
+                  </div>
+              </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100 rounded-0 mt-3" (click)="onLogin()" >Login</button>
+            <p class="text-light pt-5">Not a User? Register <span  class="text-decoration-underline" (click)="notRegisterted()">here</span></p>
+          </form>
+    </div>
+</div>
+
+
+<!-- register part  -->
+<div class="register"  *ngIf="isLogin == false" >
+
+    <div class=" bg-opacity-50 bg-dark w-75  rounded-3 text-center p-5 justify-content-center mb-5 mt-5 mx-auto" >
+        <form [formGroup]='registerForm'>
+            <h3 class="text-light  fw-bold">Register</h3>
+            <div class="mb-3 pt-3  text-light opacity-75">
+              <input type="email" formControlName="regEmail"  name="regEmail" class=" rounded-0 form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email">
+              <div *ngIf="regEmail?.invalid && (regEmail?.dirty || regEmail?.touched)">
+                <div *ngIf="regEmail?.errors?.['required']">
+                    <p class="text-light p-0 float-start ">*Required</p>
+                </div>
+                <div *ngIf="regEmail?.errors?.['email']">
+                    <p class="text-light p-0 float-start ">Wrong Email Format</p>
+                </div>
+              </div>
+            </div> 
+            <div class="mb-3 pt-3  text-light opacity-75">
+              <input type="email" formControlName="regUserName"  name="regUserName" class=" rounded-0 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
+              <div *ngIf="regUserName?.invalid && (regUserName?.dirty || regUserName?.touched)">
+                <div *ngIf="regUserName?.errors?.['required']">
+                    <p class="text-light p-0 float-start ">*Required</p>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3 pt-3  text-light opacity-75">
+              <input type="email" formControlName="regPhone"  name="regPhone" class=" rounded-0 form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Phone Number">
+              <div *ngIf="regPhone?.invalid && (regPhone?.dirty || regPhone?.touched)">
+                <div *ngIf="regPhone?.errors?.['required']">
+                    <p class="text-light p-0 float-start ">*Required</p>
+                </div>
+                <div *ngIf="regPhone?.errors?.['minlength']">
+                    <p class="text-light p-0 float-start ">*Phone number must be 10 digit </p>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3  pt-3 text-light opacity-75"> 
+              <input type="password"  formControlName= "regPassword" name ="regPassword" class=" rounded-0 form-control" id="exampleInputPassword1" placeholder="Create Password">
+              <div *ngIf="regPassword?.invalid && (regPassword?.dirty || regPassword?.touched)">
+                <div *ngIf="regPassword?.errors?.['required']">
+                    <p class="text-light p-0 float-start ">*Required</p>
+                </div>
+                <div *ngIf="regPassword?.errors?.['minlength']">
+                    <p class="text-light p-0 float-start ">*Password should be 8 characters</p>
+                </div>
+              </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100 rounded-0 mt-3" (click)="onRegister()" >Register</button>
+            <p class="text-light pt-5">Already a user ? Login <span  class="text-decoration-underline" (click)="registered()">here</span></p>
+          </form>
+    </div>
+</div>

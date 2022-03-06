@@ -1,0 +1,43 @@
+<button class="btn btn-primary rounded-0 m-3"> <a class="text-light text-decoration-none" routerLinkActive="active" routerLink ="/cart"> <i class="bi bi-arrow-left"></i> Back to Cart</a></button>
+
+<div class="d-flex">
+    <div class="p-5">
+
+    
+    <h3>Dear {{currentUser.userName}},</h3>
+
+    <p>Thank you for shopping with us.</p>
+    <h4>Order Summary</h4>
+    <table class="table  bg-dark  fw-bold text-light ">
+        <thead class=" text-light fw-bolder">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of cartItems" class="text-secondary">
+            <tr>
+                <td>
+                    {{item["title"]}}
+                </td>
+                <td>${{item["price"]}}</td>
+                <td>
+                    <p class="d-inline p-2">{{item["quantity"]}}</p>
+                </td>
+                <td>${{item["price"] * item["quantity"]}}</td>
+            </tr>
+    
+        </tbody>
+    </table>
+</div>
+<div class="p-5">
+
+    <h4>Subtotal : ${{totalCartCost()}}</h4>
+    <p>Your Purchase will be confirmed by sending a mail to your registered  email : <span class="text-primary">{{currentUser.email}}</span></p>
+    <button class="btn btn-primary rounded-0" (click)="sendMail()">Click here to confirm</button> 
+    <button class="btn btn-primary rounded-0 float-end" (click)="placeOrder()">Place Order</button>
+</div>
+
+</div>

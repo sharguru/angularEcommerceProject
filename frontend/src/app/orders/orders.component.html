@@ -1,0 +1,50 @@
+<div *ngIf= "ordersTable.length == 0">
+    <!-- <img src="../../assets/images/emptyCart.png" alt="..."> -->
+    <div class="border bg-light bg-none w-50 text-center text-dark p-5 m-5 mx-auto">
+        <!-- <h1 class="cart">🛒</h1> -->
+        <h4 class="mb-5">OOPS! There are no orders from you YETTTT! </h4>
+        <button class="btn btn-danger bg-gradient rounded-0"><a class="text-decoration-none text-dark" href="/products">Shop Now</a></button>
+    </div>
+</div>
+<div  *ngIf ="ordersTable.length != 0" class="m-5">
+    <div class="d-flex justify-content-around mb-3">
+
+        <h5 class="d-block w-50 m-0 p-2">Hey <b>{{currentUser.userName}}</b>, your orders so far with us</h5>
+        <button class="btn btn-warning w-25 p-2 rounded-0" routerLink ="/products" routerLinkActive = "active" >Shop more</button>
+    </div>
+
+    <table class="table rounded-3 bg-white text-dark fw-bold">
+        <thead class=" text-danger fw-bolder">
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Date Of Order</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let item of ordersTable" class="text-secondary">
+            <tr>
+                <td>{{item["productId"]}}</td>
+                <td>            <img src="{{item['image']}}" alt="..." class="orderImg">
+                </td>
+                <td>
+                    {{item["title"]}}
+                </td>
+                <td>${{item["price"]}}</td>
+                <td>
+                    <p class="d-inline p-2">{{item["quantity"]}}</p>
+                </td>
+                <td>
+                    {{item["dateOfOrder"]}}
+                </td>
+            </tr>
+    
+        </tbody>
+       
+    </table>
+   
+    
+    
+    </div>
